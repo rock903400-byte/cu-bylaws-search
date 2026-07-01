@@ -1,0 +1,490 @@
+:root {
+    --primary: #2c3e50;
+    --accent: #3498db;
+    --bg: #f0f2f5;
+    --text: #333;
+    --border: #e1e4e8;
+    --white: #fff;
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Microsoft JhengHei", -apple-system, system-ui, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+header h1 {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+header h1 span {
+    font-weight: 300;
+    margin-left: 0.5rem;
+    color: #bdc3c7;
+}
+
+.main-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-item {
+    color: #bdc3c7;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0.5rem 0.2rem;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.nav-item:hover {
+    color: white;
+}
+
+.nav-item.active {
+    color: white;
+    border-bottom-color: var(--accent);
+}
+
+.search-container {
+    display: flex;
+    gap: 0.8rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#search-input {
+    flex: 1;
+    padding: 0.7rem 1.2rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+}
+
+#search-input:focus {
+    background-color: white;
+    color: black;
+}
+
+#search-btn {
+    padding: 0.7rem 1.8rem;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--accent);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.1s, background 0.2s;
+}
+
+#search-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+}
+
+main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+aside {
+    width: 220px;
+    background-color: white;
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 0;
+    overflow-y: auto;
+}
+
+aside h3 {
+    padding: 0 1.5rem 1rem;
+    font-size: 0.85rem;
+    color: #95a5a6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#category-list {
+    list-style: none;
+}
+
+#category-list li {
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    border-left: 4px solid transparent;
+}
+
+#category-list li:hover {
+    background-color: #f8f9fa;
+    color: var(--accent);
+}
+
+#category-list li.active {
+    background-color: #ebf5fb;
+    color: var(--accent);
+    border-left-color: var(--accent);
+    font-weight: bold;
+}
+
+#results-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    overflow-y: auto;
+    background-color: white;
+}
+
+#status-bar {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    color: #7f8c8d;
+    font-size: 0.95rem;
+}
+
+#results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.result-card {
+    padding: 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.result-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.result-title {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--primary);
+}
+
+.badge {
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+    font-weight: 600;
+}
+
+.result-preview {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    padding: 0.8rem;
+    border-radius: 6px;
+    border-left: 3px solid #ddd;
+}
+
+.result-preview mark {
+    background-color: #ffeaa7;
+    color: #d35400;
+    padding: 0 3px;
+    border-radius: 2px;
+}
+
+/* --- 預覽區域 (重點優化) --- */
+#preview-section {
+    width: 0;
+    background-color: #f8f9fa;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1000;
+}
+
+#preview-section.open {
+    width: 60%; /* 平衡的 60% 比例 */
+}
+
+#preview-header {
+    padding: 1rem 1.5rem;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+#preview-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    max-width: 75%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#close-preview {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+#close-preview:hover {
+    background-color: #c0392b;
+}
+
+#preview-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #f0f2f5; /* 整體背景稍微深一點，突出紙張感 */
+}
+
+#preview-frame {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: white;
+}
+
+#docx-viewer {
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 3rem;
+    background-color: white;
+}
+
+#pdf-viewer {
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #e4e6eb; /* 稍微深色的背景，凸顯白色的 PDF 紙張 */
+    padding: 1.5rem 0;
+}
+
+.pdf-page-container {
+    position: relative;
+    margin: 0 auto 1.5rem auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background-color: white;
+}
+
+.pdf-page-container canvas {
+    display: block;
+}
+
+/* 覆蓋 pdf.js 預設的高亮樣式，改用我們的黃色標記 */
+.textLayer mark.doc-highlight {
+    background-color: #ffeb3b;
+    color: transparent !important; /* 關鍵：PDF 高亮時文字保持透明，避免殘影 */
+    border-radius: 2px;
+    box-shadow: 0 0 5px rgba(255, 235, 59, 0.5);
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+/* 當前選中的高亮標記 */
+.textLayer mark.doc-highlight.active-highlight {
+    background-color: #ff9800 !important;
+    color: transparent !important; /* PDF 模式下依然保持透明 */
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.8) !important;
+    z-index: 100;
+}
+
+/* Word 文件模式下需要顯示文字顏色 */
+.docx-content mark.doc-highlight.active-highlight {
+    background-color: #ff9800 !important;
+    color: #fff !important;
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.8) !important;
+    z-index: 100;
+}
+
+#prev-match:hover, #next-match:hover {
+    background-color: rgba(255,255,255,0.3) !important;
+}
+
+#prev-match:active, #next-match:active {
+    transform: translateY(1px);
+}
+
+.docx-content {
+    max-width: 850px; /* 閱讀最舒服的寬度 */
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.doc-highlight {
+    background-color: #ffeb3b;
+    color: #000;
+    padding: 2px 0;
+    border-radius: 2px;
+}
+
+.preview-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #bdc3c7;
+    font-size: 1.2rem;
+}
+
+/* 手機版 RWD 優化 */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .logo h1 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .search-container {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    aside {
+        width: 100%;
+        height: auto;
+        padding: 0.5rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    aside h3 {
+        display: none;
+    }
+
+    #category-list {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    #category-list li {
+        padding: 0.6rem 1.2rem;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+
+    #category-list li.active {
+        background-color: transparent;
+        border-bottom-color: var(--accent);
+    }
+
+    #results-section {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    #preview-section {
+        width: 100%;
+        height: 0;
+        border-left: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        z-index: 2000;
+        transition: height 0.3s ease;
+        visibility: hidden;
+        overflow: hidden;
+    }
+
+    #preview-section.open {
+        width: 100%;
+        height: 100%;
+        visibility: visible;
+    }
+
+    #preview-header {
+        padding: 0.8rem 1rem;
+    }
+
+    #docx-viewer {
+        padding: 1rem;
+    }
+
+    #pdf-viewer {
+        padding: 0;
+    }
+
+    .pdf-page-container {
+        margin: 0 auto 0.5rem auto;
+        box-shadow: none;
+        border-bottom: 1px solid var(--border);
+    }
+}
