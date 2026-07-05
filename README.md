@@ -1,5 +1,7 @@
 # legal-index-system
 
+![CI](https://github.com/rock903400-byte/cu-bylaws-search/actions/workflows/ci.yml/badge.svg)
+
 > 協會法規智慧索引系統 — 儲蓄互助協會輕量級法規全文檢索系統
 
 ## 功能特色
