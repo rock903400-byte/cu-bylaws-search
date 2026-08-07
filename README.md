@@ -1,6 +1,7 @@
 # legal-index-system
 
-![CI](https://github.com/rock903400-byte/cu-bylaws-search/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/rock903400-byte/cu-bylaws-search/actions/workflows/ci.yml/badge.svg)](https://github.com/rock903400-byte/cu-bylaws-search/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 > 協會法規智慧索引系統 — 儲蓄互助協會輕量級法規全文檢索系統
 
